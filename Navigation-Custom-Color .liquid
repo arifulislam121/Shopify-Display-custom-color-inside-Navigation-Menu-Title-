@@ -1,17 +1,17 @@
  {% comment %}
-                          =========custome code========
-                        {% endcomment %}
+ =========custome code========
+  {% endcomment %}
 
-                        {%- if childlink.links != blank -%}
-                          <ul class="mega-menu__item-child text-subtext">
-                            {%- for grandchildlink in childlink.links -%}
-                              {%- assign handle = grandchildlink.url | split: '/' | last -%}
-                              {%- assign grandchild_collection = collections[handle] -%}
+ {%- if childlink.links != blank -%}
+   <ul class="mega-menu__item-child text-subtext">
+     {%- for grandchildlink in childlink.links -%}
+       {%- assign handle = grandchildlink.url | split: '/' | last -%}
+       {%- assign grandchild_collection = collections[handle] -%}
 
-                              <li class="reversed-link">
-                                <a href="{{ grandchildlink.url }}" class="block mega-menu__link">
+       <li class="reversed-link">
+         <a href="{{ grandchildlink.url }}" class="block mega-menu__link">
 
-                              {%- if grandchild_collection
+ {%- if grandchild_collection
   and grandchild_collection.metafields.custom.menu_colors != blank
 -%}
   <img id="menuimg" 
@@ -19,24 +19,22 @@
     alt="Menu Icon" >
 {%- endif -%}
 
-                              {% comment %}
-                                 {%- if grandchild_collection
-                                    and grandchild_collection.metafields.custom.menu_color != blank
-                                  -%}
-                                    <span
-                                      class="color-dot"
-                                      style="background-color:{{ grandchild_collection.metafields.custom.menu_color }};"
-                                    ></span>
-                                  {%- endif -%}
-                              {% endcomment %}
-                                 
-                              
+    {% comment %}
+       {%- if grandchild_collection
+          and grandchild_collection.metafields.custom.menu_color != blank
+        -%}
+          <span
+            class="color-dot"
+            style="background-color:{{ grandchild_collection.metafields.custom.menu_color }};"
+          ></span>
+        {%- endif -%}
+    {% endcomment %}
 
-                                  <span id="megamenutext" class="reversed-link__text">
-                                    {{- grandchildlink.title | escape -}}
-                                  </span>
-                                </a>
-                              </li>
-                            {%- endfor -%}
-                          </ul>
-                        {%- endif -%}
+        <span id="megamenutext" class="reversed-link__text">
+          {{- grandchildlink.title | escape -}}
+        </span>
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
+{%- endif -%}
